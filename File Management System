@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+   int choice;
+   char filename[50];
+   FILE *fp;
+
+   while (1) {
+      printf("\nFile Management System\n");
+      printf("1. Create a file\n");
+      printf("2. Delete a file\n");
+      printf("3. Modify a file\n");
+      printf("4. Exit\n");
+      printf("Enter your choice: ");
+      scanf("%d", &choice);
+
+      switch (choice) {
+         case 1:
+            printf("Enter the name of the file: ");
+            scanf("%s", filename);
+
+            fp = fopen(filename, "w");
+
+            if (fp == NULL) {
+               printf("Failed to create file.\n");
+            }
+            else {
+               printf("File created successfully.\n");
+               fclose(fp);
+            }
+            break;
+case 2:
+            printf("Enter the name of the file: ");
+            scanf("%s", filename);
+
+            if (remove(filename) == 0) {
+               printf("File deleted successfully.\n");
+            }
+            else {
+               printf("Failed to delete file.\n");
+            }
+            break;
+
+         case 3:
+            printf("Enter the name of the file: ");
+            scanf("%s", filename);
+
+            fp = fopen(filename, "r+");
+
+            if (fp == NULL) {
+               printf("Failed to open file.\n");
+            }
+            else {
+               // Add code to modify file
+               printf("File modified successfully.\n");
+               fclose(fp);
+            }
+            break;
+
+         case 4:
+            printf("Exiting program...\n");
+            exit(0);
+
+         default:
+            printf("Invalid choice.\n");
+            break;
+      }
+   }
+
+   return 0;
+}
